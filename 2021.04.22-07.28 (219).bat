@@ -55,30 +55,36 @@ set words[37]=comet
 set words[38]=shard
 set words[39]=aurorae
 
-set year=2026
+set year=2021
 
-for /L %%i in (1,1,117) do (
+for /L %%i in (1,1,219) do (
 
     set /a r=!random! %% 40
     set /a v=!random! %% 10
     call set word=%%words[!r!]%%
     call set verb=%%verbs[!v!]%%
 
-    if %%i==117 (
+    if %%i==219 (
         set msg=final commit
     ) else (
         set msg=!verb! !word!
     )
 
-    :: Date range: 2026-01-08 to 2026-02-15 (39 days total)
-    set /a offset=!random! %% 39
+    :: Date range: 2021-04-22 to 2021-07-28 (~98 days)
+    set /a offset=!random! %% 98
 
-    if !offset! LSS 24 (
-        set month=01
-        set /a day=8 + offset
+    if !offset! LSS 9 (
+        set month=04
+        set /a day=22 + offset
+    ) else if !offset! LSS 40 (
+        set month=05
+        set /a day=offset - 8
+    ) else if !offset! LSS 70 (
+        set month=06
+        set /a day=offset - 39
     ) else (
-        set month=02
-        set /a day=offset - 23
+        set month=07
+        set /a day=offset - 69
     )
 
     set /a hour=!random! %% 24
@@ -100,5 +106,5 @@ for /L %%i in (1,1,117) do (
 
     git commit -m "!msg!" --date "!commitdate!"
 
-    echo %%i / 117 - !msg! - !commitdate!
+    echo %%i / 219 - !msg! - !commitdate!
 )
