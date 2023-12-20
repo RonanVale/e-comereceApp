@@ -1,7 +1,7 @@
 @echo off
 setlocal EnableDelayedExpansion
 
-:: verbs
+:: words
 set verbs[0]=add
 set verbs[1]=fix
 set verbs[2]=update
@@ -12,80 +12,78 @@ set verbs[6]=create
 set verbs[7]=implement
 set verbs[8]=cleanup
 set verbs[9]=improve
+set words[10]=river
+set words[11]=ember
+set words[12]=vortex
+set words[13]=pulse
+set words[14]=matrix
+set words[15]=signal
+set words[16]=glitch
+set words[17]=flux
+set words[18]=nova
+set words[19]=orbit
+set words[20]=emberly
+set words[21]=lunar
+set words[22]=spark
+set words[23]=prism
+set words[24]=nebula
+set words[25]=aurora
+set words[26]=echo
+set words[27]=zenith
+set words[28]=ripple
+set words[29]=chronos
+set words[30]=axis
+set words[31]=cascade
+set words[32]=drift
+set words[33]=glow
+set words[34]=horizon
+set words[35]=ignite
+set words[36]=jet
+set words[37]=kismet
+set words[38]=lumen
+set words[39]=mosaic
+set words[40]=opal
+set words[41]=quasar
+set words[42]=radiant
+set words[43]=solace
+set words[44]=tide
+set words[45]=unison
+set words[46]=blaze
+set words[47]=comet
+set words[48]=shard
+set words[49]=aurorae
 
-:: words
-set words[0]=river
-set words[1]=ember
-set words[2]=vortex
-set words[3]=pulse
-set words[4]=matrix
-set words[5]=signal
-set words[6]=glitch
-set words[7]=flux
-set words[8]=nova
-set words[9]=orbit
-set words[10]=emberly
-set words[11]=lunar
-set words[12]=spark
-set words[13]=prism
-set words[14]=nebula
-set words[15]=aurora
-set words[16]=echo
-set words[17]=zenith
-set words[18]=ripple
-set words[19]=chronos
-set words[20]=axis
-set words[21]=cascade
-set words[22]=drift
-set words[23]=glow
-set words[24]=horizon
-set words[25]=ignite
-set words[26]=jet
-set words[27]=kismet
-set words[28]=lumen
-set words[29]=mosaic
-set words[30]=opal
-set words[31]=quasar
-set words[32]=radiant
-set words[33]=solace
-set words[34]=tide
-set words[35]=unison
-set words[36]=blaze
-set words[37]=comet
-set words[38]=shard
-set words[39]=aurorae
+:: verbs for realistic commit messages
 
-set year=2021
 
-for /L %%i in (1,1,219) do (
+set year=2023
 
-    set /a r=!random! %% 40
+
+for /L %%i in (1,1,67) do (
+
+    set /a r=!random! %% 50
     set /a v=!random! %% 10
     call set word=%%words[!r!]%%
+
     call set verb=%%verbs[!v!]%%
 
-    if %%i==219 (
-        set msg=final commit
+
+    if %%i==67 (
+        set msg= final commit
     ) else (
         set msg=!verb! !word!
     )
 
-    :: Date range: 2021-04-22 to 2021-07-28 (~98 days)
-    set /a offset=!random! %% 98
+    set /a offset=!random! %% 31
 
-    if !offset! LSS 9 (
-        set month=04
-        set /a day=22 + offset
-    ) else if !offset! LSS 40 (
-        set month=05
-        set /a day=offset - 8
-    ) else if !offset! LSS 70 (
-        set month=06
-        set /a day=offset - 39
+    if !offset! LSS 2 (
+        set month=11
+        set /a day=29 + offset
     ) else (
-        set month=07
-        set /a day=offset - 69
+        set month=12
+        set /a day=offset - 1
     )
+
 
     set /a hour=!random! %% 24
     set /a minute=!random! %% 60
@@ -106,5 +104,5 @@ for /L %%i in (1,1,219) do (
 
     git commit -m "!msg!" --date "!commitdate!"
 
-    echo %%i / 219 - !msg! - !commitdate!
+    echo %%i / 67 - !msg! - !commitdate!
 )
