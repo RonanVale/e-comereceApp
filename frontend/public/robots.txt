@@ -1,0 +1,8 @@
+git status
+
+
+
+
+pwd   # On Linux/Mac
+cd    # On Windows PowerShell
+
